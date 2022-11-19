@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "964523562358",
+    "project_id": "demolwa",
+    "storage_bucket": "demolwa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964523562358:android:24c56fe602195af5d21657",
+        "android_client_info": {
+          "package_name": "com.algostackbd.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964523562358-8fdo4orakhkqu01pdefd6cdr0mmu12aq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUjNaQ1knaTv-EmEbB0HSS7VkJZunlAPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964523562358-8fdo4orakhkqu01pdefd6cdr0mmu12aq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

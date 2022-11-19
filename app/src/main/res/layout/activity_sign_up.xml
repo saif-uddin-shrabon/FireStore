@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp"
+    android:background="@color/white"
+    android:padding="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/bus_seat"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up to Start your Journey"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            >
+
+            <EditText
+                android:hint="Enter your Fullname"
+                android:background="@drawable/edittextbackgroud"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/full_name"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:hint="Enter your UserName"
+                android:background="@drawable/edittextbackgroud"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/userNameI"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:hint="Enter your Email"
+                android:background="@drawable/edittextbackgroud"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/mail"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:hint="Enter your phone number"
+                android:background="@drawable/edittextbackgroud"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/numberI"
+                />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:hint="Enter your Passwprd"
+                android:background="@drawable/edittextbackgroud"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/spassID"
+                />
+
+
+        </LinearLayout>
+
+        <android.widget.Button
+            android:id="@+id/signBbtn"
+            android:onClick="registerUser"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/custom_button"
+            android:text="Sign UP"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <android.widget.Button
+            android:id="@+id/tologin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? Log In"
+            android:background="#00000000"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

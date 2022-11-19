@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/bus"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/bus_seat"/>
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi There! Welcome Back!"
+        android:textSize="40dp"
+
+        android:textColor="#000000"
+        />
+
+    <TextView
+        android:id="@+id/signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In to continue"
+        android:textSize="20dp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation = "vertical"
+        >
+
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Enter your Email"
+          android:textColor="@color/black"
+          android:layout_marginTop="50dp"
+       />
+       <EditText
+           android:hint="Enter your Email"
+           android:background="@drawable/edittextbackgroud"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:id="@+id/emailID"
+           />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter your Password"
+            android:textColor="@color/black"
+           android:layout_marginTop="50dp"
+
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Enter Your Password"
+            android:id="@+id/passID"
+            android:background="@drawable/edittextbackgroud"
+
+            />
+
+        <Button
+            android:id="@+id/resetPass"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="Forgot Password?"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:elevation="0dp"
+            android:layout_margin="5dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:background="#4BDDB4"
+            android:text="Log In"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:id="@+id/logIn"
+            />
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="#00000000"
+            android:elevation="0dp"
+            android:text="Sign Up"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
