@@ -1,12 +1,12 @@
 package com.algostackbd.firebase;
 
-public class userClass {
-  private String fullname,username,pnumber,email;
+public class UserModel {
+    private String fullname,username,phoneNumber,email;
 
-    public userClass(String fullname, String username, String pnumber, String email) {
+    public UserModel(String fullname, String username, String phoneNumber, String email) {
         this.fullname = fullname;
         this.username = username;
-        this.pnumber = pnumber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
@@ -26,12 +26,12 @@ public class userClass {
         this.username = username;
     }
 
-    public String getPnumber() {
-        return pnumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPnumber(String pnumber) {
-        this.pnumber = pnumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

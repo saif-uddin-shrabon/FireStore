@@ -21,9 +21,10 @@ public class SignUp extends AppCompatActivity {
 
    EditText regName, regUsername, regEmail, regPhoneNo, regPassword;
     Button signbtn, tologin;
-    ProgressDialog progressDialog;
+
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -37,6 +38,7 @@ public class SignUp extends AppCompatActivity {
         regPassword = findViewById(R.id.spassID);
         tologin = findViewById(R.id.tologin);
         signbtn = findViewById(R.id.signBbtn);
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -45,62 +47,62 @@ public class SignUp extends AppCompatActivity {
         signbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String RegfullName = regName.getText().toString();
-                String ReguserName = regUsername.getText().toString();
-                String Regemail = regEmail.getText().toString().trim();
-                String RegPhone = regPhoneNo.getText().toString();
-                String RegPass = regPassword.getText().toString();
-
-                System.out.println("Test Email Before : "+Regemail);
-                System.out.println("Test Pass Before : "+RegPass);
-                System.out.println("Test RegfullName Before : "+RegfullName);
-                System.out.println("Test ReguserName Before : "+ReguserName);
-                System.out.println("Test RegPhone Before : "+RegPhone);
+                String fullname = regName.getText().toString();
+                String username = regUsername.getText().toString();
+                String email = regEmail.getText().toString().trim();
+                String phoneNumber =  regPhoneNo.getText().toString();
+                String password = regPassword.getText().toString();
 
                 progressDialog.show();
 
-                firebaseAuth.createUserWithEmailAndPassword(Regemail, RegPass)
+                firebaseAuth.createUserWithEmailAndPassword(email,password)
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
 
-                                System.out.println("Test Email After : "+Regemail);
-                                System.out.println("Test Pass After : "+RegPass);
+                                firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().getUid())
+                                        .set(new UserModel(fullname,username,phoneNumber,email));
 
-                                firebaseFirestore.collection("Users")
-                                        .document(FirebaseAuth.getInstance().getUid())
-                                        .set(new userClass(RegfullName,ReguserName,RegPhone,Regemail));
+                                progressDialog.cancel();
 
                                 Intent myintent = new Intent(SignUp.this, MainActivity.class);
                                 startActivity(myintent);
                                 finish();
-                                Toast.makeText(SignUp.this,"Reg Succesfull", Toast.LENGTH_SHORT).show();
 
+                                Toast.makeText(SignUp.this, "Registation Succesfull", Toast.LENGTH_LONG).show();
 
-
-                                progressDialog.cancel();
 
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SignUp.this,"Reg Faild", Toast.LENGTH_SHORT).show();
 
                                 progressDialog.cancel();
+                                Toast.makeText(SignUp.this, "Registation Failed", Toast.LENGTH_LONG).show();
+
+
                             }
                         });
-
-
             }
         });
+
+
         tologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent myintent = new Intent(SignUp.this, MainActivity.class);
                 startActivity(myintent);
                 finish();
+
             }
         });
+
+
+
+
+
+
     }
 }
