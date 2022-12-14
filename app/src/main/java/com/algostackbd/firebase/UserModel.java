@@ -1,13 +1,14 @@
 package com.algostackbd.firebase;
 
 public class UserModel {
-    private String fullname,username,phoneNumber,email;
+    private String fullname,username,phoneNumber,email,purl;
 
-    public UserModel(String fullname, String username, String phoneNumber, String email) {
+    public UserModel(String fullname, String username, String phoneNumber, String email, String purl) {
         this.fullname = fullname;
         this.username = username;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.purl = purl;
     }
 
     public String getFullname() {
@@ -40,5 +41,13 @@ public class UserModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPurl() {
+        return purl;
+    }
+
+    public void setPurl(String purl) {
+        this.purl = purl;
     }
 }

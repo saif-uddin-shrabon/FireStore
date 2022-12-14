@@ -1,8 +1,10 @@
 package com.algostackbd.firebase;
 
 import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -23,8 +25,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Random;
 
 public class SignUp extends AppCompatActivity {
 
@@ -50,7 +57,8 @@ public class SignUp extends AppCompatActivity {
         regPassword = findViewById(R.id.spassID);
         tologin = findViewById(R.id.tologin);
         signbtn = findViewById(R.id.signBbtn);
-        imgup = (ImageView) findViewById(R.id.imgupload);
+        imgup = findViewById(R.id.imgupload);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -65,9 +73,9 @@ public class SignUp extends AppCompatActivity {
                         .compress(1024)			//Final image size will be less than 1 MB(Optional)
                         .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                         .start(101);
+
             }
         });
-
 
 
         signbtn.setOnClickListener(new View.OnClickListener() {
@@ -81,25 +89,40 @@ public class SignUp extends AppCompatActivity {
 
                 progressDialog.show();
 
-                firebaseAuth.createUserWithEmailAndPassword(email,password)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference uploder = storage.getReference("Image"+new Random().nextInt(50));
 
-                                firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().getUid())
-                                        .set(new UserModel(fullname,username,phoneNumber,email));
+                uploder.putFile(uri)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                                progressDialog.cancel();
+                                        uploder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                firebaseAuth.createUserWithEmailAndPassword(email,password)
+                                                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                                            @Override
+                                                            public void onSuccess(AuthResult authResult) {
 
-                                Intent myintent = new Intent(SignUp.this, MainActivity.class);
-                                startActivity(myintent);
-                                finish();
+                                                                firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().getUid())
+                                                                        .set(new UserModel(fullname,username,phoneNumber,email,uri.toString()));
 
-                                Toast.makeText(SignUp.this, "Registation Succesfull", Toast.LENGTH_LONG).show();
+                                                                progressDialog.cancel();
+
+                                                                Intent myintent = new Intent(SignUp.this, MainActivity.class);
+                                                                startActivity(myintent);
+                                                                finish();
+
+                                                                Toast.makeText(SignUp.this, "Registation Succesfull", Toast.LENGTH_LONG).show();
 
 
-                            }
-                        })
+                                                            }
+                                                        });
+                                            }
+                                        });
+                                    }
+                                })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
@@ -124,9 +147,6 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
 
@@ -155,6 +175,5 @@ public class SignUp extends AppCompatActivity {
 
         }
     }
-
 
 }
