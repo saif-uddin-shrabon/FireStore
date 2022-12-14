@@ -1,26 +1,38 @@
 package com.algostackbd.firebase;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.InputStream;
+
 public class SignUp extends AppCompatActivity {
 
    EditText regName, regUsername, regEmail, regPhoneNo, regPassword;
     Button signbtn, tologin;
+    ImageView imgup;
+    Uri uri;
+    Bitmap bitmap;
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
@@ -38,11 +50,25 @@ public class SignUp extends AppCompatActivity {
         regPassword = findViewById(R.id.spassID);
         tologin = findViewById(R.id.tologin);
         signbtn = findViewById(R.id.signBbtn);
+        imgup = (ImageView) findViewById(R.id.imgupload);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         progressDialog = new ProgressDialog(this);
+
+        imgup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.with(SignUp.this)
+                        .crop()	    			//Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start(101);
+            }
+        });
+
+
 
         signbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,4 +131,30 @@ public class SignUp extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode ==101 && resultCode == Activity.RESULT_OK ){
+
+            uri = data.getData();
+
+            try {
+                InputStream inputStream  = this.getContentResolver().openInputStream(uri);
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                imgup.setImageBitmap(bitmap);
+
+            }catch (Exception e)
+            {
+
+            }
+
+
+
+        }
+    }
+
+
 }

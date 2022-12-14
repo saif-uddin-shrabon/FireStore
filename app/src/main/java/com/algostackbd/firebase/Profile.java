@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.common.base.MoreObjects;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,7 +24,6 @@ public class Profile extends AppCompatActivity {
 
     FirebaseFirestore dbroot;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,20 +35,19 @@ public class Profile extends AppCompatActivity {
         email = findViewById(R.id.EmailF);
         fetchBTN = findViewById(R.id.fetch);
 
-        dbroot=FirebaseFirestore.getInstance();
-
+        dbroot = FirebaseFirestore.getInstance();
 
         fetchBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                DocumentReference documentReference=dbroot.collection("Users").document("POBt4tGTMddtJ3OdoFM4veCUnZI2");
-                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                DocumentReference document = dbroot.collection("Users").document("POBt4tGTMddtJ3OdoFM4veCUnZI2");
+
+                document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                        if(documentSnapshot.exists()){
-
+                        if (documentSnapshot.exists()){
 
                             fullName.setText(documentSnapshot.getString("fullname"));
                             userName.setText(documentSnapshot.getString("username"));
@@ -57,22 +56,26 @@ public class Profile extends AppCompatActivity {
 
                             Toast.makeText(Profile.this,"Fetch Successfully", Toast.LENGTH_LONG).show();
 
-
-                        }else{
+                        }else
+                        {
                             Toast.makeText(Profile.this,"Row not found", Toast.LENGTH_LONG).show();
                         }
+
+
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
-                        Toast.makeText(Profile.this,"Failed to fetch data", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Profile.this,"Failed to Fetch data", Toast.LENGTH_LONG).show();
                     }
                 });
 
+
             }
         });
+
+
 
     }
 }
