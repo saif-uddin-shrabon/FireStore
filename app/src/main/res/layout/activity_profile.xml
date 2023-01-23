@@ -77,6 +77,17 @@
         android:text="Fetch Data"
         android:layout_marginTop="30dp"/>
 
+    <TextView
+        android:id="@+id/chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Messenger"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
+
+
 
 
 </LinearLayout>

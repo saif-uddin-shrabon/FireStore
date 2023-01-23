@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
@@ -90,16 +91,17 @@ public class SignUp extends AppCompatActivity {
                 progressDialog.show();
 
                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference uploder = storage.getReference("Image"+new Random().nextInt(50));
+                StorageReference uplode = storage.getReference("image"+new Random().nextInt(50));
 
-                uploder.putFile(uri)
+                uplode.putFile(uri)
                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                        uploder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        uplode.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                             @Override
                                             public void onSuccess(Uri uri) {
+
+
                                                 firebaseAuth.createUserWithEmailAndPassword(email,password)
                                                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                                             @Override
@@ -119,6 +121,7 @@ public class SignUp extends AppCompatActivity {
 
                                                             }
                                                         });
+
                                             }
                                         });
                                     }

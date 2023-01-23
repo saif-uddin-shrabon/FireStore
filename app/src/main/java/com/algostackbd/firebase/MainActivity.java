@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailF.getText().toString();
+                String email = emailF.getText().toString().trim();
                 String passwoerd = passF.getText().toString();
 
                 progressDialog.show();
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 progressDialog.cancel();
-                                Toast.makeText(MainActivity.this,"Send Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,"Send Email", Toast.LENGTH_SHORT);
 
                             }
                         })

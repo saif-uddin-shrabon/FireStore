@@ -23,6 +23,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'com/itextpdf/io/font/cmap_info.txt'
+        exclude 'com/itextpdf/io/font/cmap/*'
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -45,6 +49,10 @@ dependencies {
 
     //imagepicker
     implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+    //itextPDF
+    implementation 'com.itextpdf:itext7-core:7.0.2'
+
 
 
 }

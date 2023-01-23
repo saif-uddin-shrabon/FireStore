@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".testPDF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp">
+
+        <EditText
+            android:hint="Enter your Fullname"
+            android:background="@drawable/edittextbackgroud"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/pdffull_name"
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:hint="Enter your UserName"
+            android:background="@drawable/edittextbackgroud"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/pdfuserNameI"
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:hint="Enter your Email"
+            android:background="@drawable/edittextbackgroud"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/pdfmail"
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:hint="Enter your phone number"
+            android:background="@drawable/edittextbackgroud"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/pdfnumberI"
+            />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:hint="Enter your Passwprd"
+            android:background="@drawable/edittextbackgroud"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/pdfpass"
+            />
+
+        <android.widget.Button
+            android:id="@+id/pdfBbtn"
+            android:onClick="registerUser"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button"
+            android:text="pdf"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+
+    </LinearLayout>
+</LinearLayout>

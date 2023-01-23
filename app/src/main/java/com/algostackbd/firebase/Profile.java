@@ -3,6 +3,7 @@ package com.algostackbd.firebase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Profile extends AppCompatActivity {
 
-    TextView fullName,userName,number,email;
+    TextView fullName,userName,number,email,messengar;
     Button fetchBTN;
 
     FirebaseFirestore dbroot;
@@ -34,6 +35,7 @@ public class Profile extends AppCompatActivity {
         number = findViewById(R.id.phoneNo);
         email = findViewById(R.id.EmailF);
         fetchBTN = findViewById(R.id.fetch);
+        messengar = findViewById(R.id.chat);
 
         dbroot = FirebaseFirestore.getInstance();
 
@@ -72,6 +74,15 @@ public class Profile extends AppCompatActivity {
                 });
 
 
+            }
+        });
+
+        messengar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, testPDF.class);
+                startActivity(intent);
+                finish();
             }
         });
 
