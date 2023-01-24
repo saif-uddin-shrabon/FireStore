@@ -14,6 +14,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Documented;
+import java.util.Random;
 
 public class testPDF extends AppCompatActivity {
 
@@ -63,7 +65,35 @@ public class testPDF extends AppCompatActivity {
 
     private void createPDF(String fullName,String UserName,String mail,String number,String pas) throws FileNotFoundException {
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        File file =  new File(path, "myPDF.pdf");
+
+        // create a string of all characters
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        // create random string builder
+        StringBuilder sb = new StringBuilder();
+
+        // create an object of Random class
+        Random random = new Random();
+
+        // specify length of random string
+        int length = 7;
+
+        for(int i = 0; i < length; i++) {
+
+            // generate random index number
+            int index = random.nextInt(alphabet.length());
+
+            // get character specified by index
+            // from the string
+            char randomChar = alphabet.charAt(index);
+
+            // append the character to string builder
+            sb.append(randomChar);
+        }
+
+        String randomString = sb.toString();
+
+        File file =  new File(path, randomString+".pdf");
         OutputStream outputStream = new FileOutputStream(file);
 
         PdfWriter writer = new PdfWriter(String.valueOf(file));
@@ -75,6 +105,8 @@ public class testPDF extends AppCompatActivity {
         Paragraph Mail = new Paragraph("Email  : "+mail);
         Paragraph Number = new Paragraph("Mobile Number : "+number);
         Paragraph Pass = new Paragraph("Password : "+pas);
+
+
 
         document.add(fullname);
         document.add(username);
